@@ -1,9 +1,9 @@
+import AgentsList from "@/components/AgentsList";
 import CallHistory from "@/components/CallHistory";
-import AgentsList from "../components/AgentsList";
-import DashboardChart from "../components/Chart";
-import Header from "../components/Header";
-import SidebarNav from "../components/Sidebar";
-import StatsGrid from "../components/StatsGrid";
+import DashboardChart from "@/components/Chart";
+import Header from "@/components/Header";
+import SidebarNav from "@/components/Sidebar";
+import StatsGrid from "@/components/StatsGrid";
 
 const page = () => {
   return (
