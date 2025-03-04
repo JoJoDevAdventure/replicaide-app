@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SidebarProvider>
-          <main>
+          <main className="w-screen">
             <SidebarTrigger/>
             {children}
           </main>

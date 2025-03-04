@@ -1,12 +1,11 @@
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
-import { Book, Home, Phone, Settings, Users } from "lucide-react";
+import { Home, Phone, Settings, Users } from "lucide-react";
 import Link from "next/link";
 
 const menuItems = [
   { title: "Dashboard", href: "/dashboard", icon: Home },
   { title: "Agents", href: "/agents", icon: Users },
   { title: "Call History", href: "/call-history", icon: Phone },
-  { title: "Knowledge Base", href: "/knowledge-base", icon: Book },
   { title: "Settings", href: "/settings", icon: Settings },
 ];
 

@@ -9,14 +9,14 @@ const stats = [
 
 export default function StatsGrid() {
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-4">
       {stats.map((stat) => (
         <Card key={stat.label}>
           <CardHeader>
-            <CardTitle>{stat.label}</CardTitle>
+            <CardTitle className="text-sm text-gray-500">{stat.label}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{stat.value}</p>
+            <p className="text-3xl font-bold">{stat.value}</p>
           </CardContent>
         </Card>
       ))}
