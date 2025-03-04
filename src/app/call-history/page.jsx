@@ -1,10 +1,11 @@
-import SidebarNav from "../../components/Sidebar";
+import SidebarNav from "@/components/SideBar";
+
 
 
 const page = () => {
   return (
     <div className="flex">
-      <SidebarNav />
+      <SidebarNav/>
       <main className="flex flex-col w-full gap-7 md:px-36 md:py-12">
       </main>
     </div>
