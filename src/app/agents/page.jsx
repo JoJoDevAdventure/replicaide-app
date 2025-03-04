@@ -1,4 +1,4 @@
-import SidebarNav from "@/components/SideBar";
+import SidebarNav from "@/components/SidebarNav";
 
 
 

@@ -2,13 +2,13 @@ import AgentsList from "@/components/AgentsList";
 import CallHistory from "@/components/CallHistory";
 import DashboardChart from "@/components/Chart";
 import Header from "@/components/Header";
-import SidebarNav from "@/components/Sidebar";
+import SidebarNav from "@/components/SidebarNav";
 import StatsGrid from "@/components/StatsGrid";
 
 const page = () => {
   return (
     <div className="flex">
-      <SidebarNav />
+      <SidebarNav/>
       <main className="flex flex-col w-full gap-7 md:px-32 md:py-12">
         <Header />
         <StatsGrid />
