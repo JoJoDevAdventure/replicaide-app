@@ -2,10 +2,11 @@
 
 import { appState } from "@/appState"; // Application state to access the username
 import { Calls } from "@/data"; // Mock data for calls
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import Header from "../../Components/dashboard/Header"; // Header component
 import SideBar from "../../Components/dashboard/SideBar"; // Sidebar navigation component
-import MainContent from "./MainContent"; // Main content component
+const MainContent = dynamic(() => import("./MainContent"), { ssr: false });
 
 const Dashboard = () => {
 

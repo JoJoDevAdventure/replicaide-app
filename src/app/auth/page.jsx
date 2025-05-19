@@ -1,12 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import Button from "@/Components/Button";
 import CustomInput from "@/Components/CustomInput";
-import Loading from "@/Components/Loading";
-import { appState } from "@/appState"; // Import app state
-import { users } from "@/data"; // Import user data
-import { useRouter } from "next/navigation"; // Use the Next.js navigation API
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+const Loading = dynamic(() => import("@/Components/Loading"), { ssr: false });
+
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../../../firebase";
 
 const Auth = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +22,13 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (user) router.replace("/dashboard");
+    });
+    return () => unsub();
+  }, [router]);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -23,25 +36,18 @@ const Auth = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    // Simulate backend call and authentication check
-    const user = users.find(
-      (u) => u.email === formData.email && u.password === formData.password
-    );
-
-    if (user) {
-      console.log(user)
-      // Simulate a delay (e.g., for loading screen)
-      setTimeout(() => {
-        appState.username = user.username;
-        appState.isAuth = true;
-        console.log(appState.username)
-        setLoading(false);
-        router.push("/"); // Redirect to the home page
-      }, 2000);
-    } else {
+    try {
+      const cred = await signInWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+      console.log("Firebase user:", cred.user);
+      router.push("/");
+    } catch (err) {
+      alert(err.message);
+    } finally {
       setLoading(false);
-      alert("User not found. Please check your credentials.");
     }
   };
 
@@ -113,6 +119,3 @@ const Auth = () => {
 };
 
 export default Auth;
-{
-  /* Background GIF */
-}

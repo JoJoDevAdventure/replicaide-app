@@ -1,19 +1,34 @@
 "use client";
 
-import Loading from "@/Components/Loading";
+import { onAuthStateChanged } from "firebase/auth";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { auth } from "../../firebase";
+// (Assumes Firebase app is initialised elsewhere in your project startup)
+
+// Dynamically import the Loading component
+const Loading = dynamic(() => import("@/Components/Loading"), {
+  ssr: false,
+});
 
 const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/call-center"); // Redirect to /auth if not authenticated
-  });
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.replace("/call-center");
+      } else {
+        router.replace("/auth");
+      }
+    });
 
-  return (
-    <Loading /> // Optional loading message
-  );
+    // Cleanup on unmount
+    return () => unsub();
+  }, [router]);
+
+  return <Loading />; // Shows while we check Firebase auth state
 };
 
 export default Home;
