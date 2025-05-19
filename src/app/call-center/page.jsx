@@ -11,7 +11,7 @@ const MainContent = dynamic(() => import("./MainContent"), { ssr: false });
 const Dashboard = () => {
 
   return (
-    <div className="flex md:min-h-[100vh] md:overflow-y-scroll pb-12">
+    <div className="flex md:h-[100vh] md:overflow-hidden pb-12">
             <Head>
         <title>ReplicAIDE Demo</title>
         <meta name="description" content="A brief description of the page" />

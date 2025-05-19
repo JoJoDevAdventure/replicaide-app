@@ -12,7 +12,7 @@ const SideBar = () => {
     { name: "Call Center", path: "/call-center", icon: <FiPhoneCall className="w-5 h-5" /> },
     { name: "Real Estate", path: "/real-estate", icon: <FiHome className="w-5 h-5" /> },
     { name: "Home Services", path: "/home-services", icon: <FiTool className="w-5 h-5" /> },
-    { name: "Auto", path: "https://auto.replicaide.com", icon: <FiTruck className="w-5 h-5" /> },
+    { name: "Auto", path: "https://auto.replicaide.com/app", icon: <FiTruck className="w-5 h-5" /> },
     { name: "EComm", path: "/ecomm", icon: <FiShoppingCart className="w-5 h-5" /> },
     { name: "Food Services 🇪🇸/🇺🇸", path: "/restaurants", icon: <FiCoffee className="w-5 h-5" /> },
     { name: "Finance 🇸🇦/🇺🇸", path: "/financial", icon: <FiDollarSign className="w-5 h-5" /> },
@@ -64,25 +64,29 @@ const SideBar = () => {
             </p>
             <ul className="space-y-0 w-full">
               {menuItems.map((item) => (
-                <li
+                <Link
                   key={item.name}
-                  className={`relative -mx-6 flex items-center gap-4 py-4 px-6 cursor-pointer ${
-                    currentPath === item.path
-                      ? "bg-s3/10 text-s3" // Highlight active menu item
-                      : isDarkMode
-                      ? "hover:bg-s3/5" // Hover styles for dark mode
-                      : "hover:bg-s3/5" // Hover styles for light mode
-                  }`}
+                  href={item.path}
+                  className="block"
                 >
-                  {currentPath === item.path && (
-                    <div className="absolute right-0 top-0 bottom-0 w-1 bg-s3" />
-                  )}
-
-                  <span className={`${currentPath === item.path ? "text-s3" : ""}`}>
-                    {item.icon}
-                  </span>
-                  <Link href={item.path}>{item.name}</Link>
-                </li>
+                  <li
+                    className={`relative -mx-6 flex items-center gap-4 py-4 px-6 cursor-pointer ${
+                      currentPath === item.path
+                        ? "bg-s3/10 text-s3"
+                        : isDarkMode
+                        ? "hover:bg-s3/5"
+                        : "hover:bg-s3/5"
+                    }`}
+                  >
+                    {currentPath === item.path && (
+                      <div className="absolute right-0 top-0 bottom-0 w-1 bg-s3" />
+                    )}
+                    <span className={`${currentPath === item.path ? "text-s3" : ""}`}>
+                      {item.icon}
+                    </span>
+                    {item.name}
+                  </li>
+                </Link>
               ))}
             </ul>
           </div>
@@ -95,21 +99,26 @@ const SideBar = () => {
           </p>
           <ul className="space-y-4">
             {accountItems.map((item) => (
-              <li
+              <Link
                 key={item.name}
-                className={`relative flex items-center gap-4 p-3 rounded-lg cursor-pointer ${
-                  currentPath === item.path
-                    ? "text-s3"
-                    : isDarkMode
-                    ? "hover:bg-s3/5"
-                    : "hover:bg-s3/5"
-                }`}
+                href={item.path}
+                className="block"
               >
-                <span className={`${currentPath === item.path ? "text-s3" : ""}`}>
-                  {item.icon}
-                </span>
-                <Link href={item.path}>{item.name}</Link>
-              </li>
+                <li
+                  className={`relative flex items-center gap-4 p-3 rounded-lg cursor-pointer ${
+                    currentPath === item.path
+                      ? "text-s3"
+                      : isDarkMode
+                      ? "hover:bg-s3/5"
+                      : "hover:bg-s3/5"
+                  }`}
+                >
+                  <span className={`${currentPath === item.path ? "text-s3" : ""}`}>
+                 {item.icon}
+                  </span>
+                  {item.name}
+                </li>
+              </Link>
             ))}
           </ul>
         </div>
