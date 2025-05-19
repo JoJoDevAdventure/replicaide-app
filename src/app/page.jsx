@@ -1,29 +1,19 @@
-import AgentsList from "@/components/AgentsList";
-import CallHistory from "@/components/CallHistory";
-import DashboardChart from "@/components/Chart";
-import Header from "@/components/Header";
-import SidebarNav from "@/components/SidebarNav";
-import StatsGrid from "@/components/StatsGrid";
+"use client";
 
-const page = () => {
+import Loading from "@/Components/Loading";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+const Home = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/call-center"); // Redirect to /auth if not authenticated
+  });
+
   return (
-    <div className="flex">
-      <SidebarNav/>
-      <main className="flex flex-col w-full gap-7 md:px-32 md:py-12">
-        <Header />
-        <StatsGrid />
-        <DashboardChart />
-        <div className="mt-6 flex gap-7">
-          <div className="w-[55%]">
-            <AgentsList />
-          </div>
-          <div className="w-[45%]">
-            <CallHistory />
-          </div>
-        </div>
-      </main>
-    </div>
+    <Loading /> // Optional loading message
   );
 };
 
-export default page;
+export default Home;
