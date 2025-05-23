@@ -1,11 +1,12 @@
-"use client";
+import dynamic from "next/dynamic";
 
 import { appState } from "@/appState"; // Application state to access the username
 import { Calls } from "@/data"; // Mock data for calls
 import Head from "next/head";
-import Header from "../../Components/dashboard/Header"; // Header component
-import SideBar from "../../Components/dashboard/SideBar"; // Sidebar navigation component
-import MainContent from "./MainContent"; // Main content component
+
+const Header = dynamic(() => import("../../Components/dashboard/Header"));
+const SideBar = dynamic(() => import("../../Components/dashboard/SideBar"));
+const MainContent = dynamic(() => import("./MainContent"));
 
 const Dashboard = () => {
 
@@ -30,4 +31,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default dynamic(() => Promise.resolve(Dashboard), { ssr: false });
