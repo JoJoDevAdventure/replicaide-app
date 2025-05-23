@@ -41,17 +41,16 @@ const LiveCall = ({ call, isActive, isDarkMode }) => {
   const [buyerData, setBuyerData] = useState({
     firstName: "",
     lastName: "",
-    email: "",
     phone: "",
+    email: "",
     budget: "",
-    financingType: "",
-    preferredPropertyType: "",
+    addressLine1:"",
+    addressLine2: "",
     city: "",
-    bedrooms: "",
-    bathrooms: "",
-    moveInTimeline: "",
-    additionalNotes: "",
+    state: "",
+    zipCode: "",
   });
+  
   const [recommendations, setRecommendations] = useState([]);
   const [showRecommendations, setShowRecommendations] = useState(false);
   const audioRef = useRef(null);
