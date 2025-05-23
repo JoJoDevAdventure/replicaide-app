@@ -1,3 +1,5 @@
+"use client"
+
 import dynamic from "next/dynamic";
 
 import { appState } from "@/appState"; // Application state to access the username
