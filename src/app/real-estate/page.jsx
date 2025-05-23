@@ -31,4 +31,4 @@ const Dashboard = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Dashboard), { ssr: false });
+export default Dashboard;
