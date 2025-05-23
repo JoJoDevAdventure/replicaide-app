@@ -73,7 +73,7 @@ export default function LiveCalls() {
     const statusCycle = ["on track", "at risk", "human needed"];
     const mocked = [0, 1, 2].map((i) => ({
       sid: `mock-${timestamp}-${i}`,
-      from: formatPhoneNumber("20055501" + (i + 10)),
+      from: formatPhoneNumber("55529401" + (i + 10)),
       to: "AI Agent",
       startTime: new Date().toISOString(),
       status: statusCycle[i], // 0 → on track, 1 → at risk, 2 → human needed

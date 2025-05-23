@@ -1,5 +1,5 @@
 const CallInfo = ({
-  phone = "702-55-1212",
+  phone = "702-555-1212",
   location = "Las Vegas, Nevada",
   timestamp = "00:49",
   isDarkMode = false, // Prop to toggle dark mode
@@ -16,7 +16,7 @@ const CallInfo = ({
     <div className={`p-4 rounded-xl h-full border-2 ${bgColor} ${borderColor}`}>
       <p className={`text-sm font-semibold ${labelColor}`}>Call Info</p>
       <div className="flex flex-col justify-center text-center h-full">
-        <h2 className={`text-l md:text-2xl font-bold ${textColor}`}>{phone}</h2>
+        <h2 className={`text-l md:text-2xl font-bold ${textColor}`}>+1(564)464-7684</h2>
         <p className={`text-sm ${labelColor}`}>{location}</p>
         <p className={`text-sm font-semibold ${timestampColor}`}>{timestamp}</p>
       </div>

@@ -1,12 +1,24 @@
 "use client";
 
+import Tabs from "@/Components/dashboard/Tabs";
+import { liveCall } from "@/data";
+import { useState } from "react";
+import LiveCall from "./LiveCall";
 
 const MainContent = () => {
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <>
-    <h1 className="h6 w-full h-full py-12 px-8 text-black text-slate-500 text-">coming soon !</h1>
-     </>
+      <div className="p-6 space-y-4 h-full">
+        <Tabs
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          tabs={["Properties", "Live Calls", "Calls History"]}
+        />
+        {activeTab === 1 && <LiveCall call={liveCall}/>}
+      </div>
+    </>
   );
 };
 
