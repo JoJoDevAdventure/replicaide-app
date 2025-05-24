@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 
 import { appState } from "@/appState"; // Application state to access the username
-import { Calls } from "@/data"; // Mock data for calls
 import Head from "next/head";
 
 const Header = dynamic(() => import("../../Components/dashboard/Header"));
