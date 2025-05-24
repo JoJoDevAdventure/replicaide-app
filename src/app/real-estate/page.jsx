@@ -26,7 +26,7 @@ const Dashboard = () => {
         <Header username={appState.username} />
         
         {/* Main Content Section */}
-        <MainContent calls={Calls} />
+        <MainContent />
       </div>
     </div>
   );
