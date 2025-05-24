@@ -7,7 +7,7 @@ import Head from "next/head";
 
 const Header = dynamic(() => import("../../Components/dashboard/Header"));
 const SideBar = dynamic(() => import("../../Components/dashboard/SideBar"));
-const MainContent = dynamic(() => import("./MainContent"));
+const MainContent = dynamic(() => import("./MainContent"), { ssr: false });
 
 const Dashboard = () => {
 
