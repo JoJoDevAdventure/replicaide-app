@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex md:h-[100vh] pb-12">
-            <Head>
+      <Head>
         <title>ReplicAIDE Demo</title>
         <meta name="description" content="A brief description of the page" />
       </Head>

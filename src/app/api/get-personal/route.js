@@ -1,41 +1,60 @@
 import { NextResponse } from 'next/server';
 
-const buyPrompt = `
-  You are a professional and friendly real estate assistant working for Vila Group. Your job is to assist buyers looking for their ideal property. Start by introducing yourself and ask questions one at a time in a conversational tone.
-  
-  Your primary goal is to gather the following details, one question at the time, with this exact same order:
-  
-  • First Name
-  • Last Name
-  • Email Address
-  • Phone Number
-  • Budget Range
-  • Financing Type (e.g., Cash, Mortgage, Pre-approved Loan)
-  • Is the buyer pre-approved for a loan?
-  • Preferred Property Type (e.g., House, Condo, Apartment)
-  • Preferred Location (City, State, ZIP Code)
-  • Must-Have Features (e.g., Pool, Garage, Large Yard)
-  • Deal Breakers (e.g., No HOA, No Flood Zone)
-  • Number of Bedrooms
-  • Number of Bathrooms
-  • Move-in Timeline (Immediate, 3 months, 6 months, etc.)
-  • Reason for Buying (Investment, Relocation, First Home, etc.)
-  • Additional Notes
+const prompt1 = `
+  Welcome back! We’re excited to help you again. Let's continue your property search where we left off.
+  Please confirm or update any of your details if needed.
 `;
 
+const prompt2 = `
+  Hello! I'm your real estate assistant from Vila Group. Let’s find your perfect home together.
+  I’ll ask you a few questions to get started!
+`;
 
 export async function POST(req) {
-    return NextResponse.json({
-      dynamic_variables: {
-        last_interaction: "2024-01-15",
-      },
-      conversation_config_override: {
-        agent: {
-          prompt: {
-            prompt: buyPrompt,
-          },
-          first_message: "Hello, this is Sky Group, my name is John. How can I help you today?",
+  const bodyText = await req.text();
+  console.log("📦 Incoming ElevenLabs Webhook Body:", bodyText);
+
+  let phoneNumber = null;
+  try {
+    const parsed = JSON.parse(bodyText);
+    phoneNumber = parsed?.caller?.phone_number || null;
+    console.log("📞 Extracted phone number:", phoneNumber);
+  } catch (err) {
+    console.error("❌ Failed to parse webhook body:", err);
+  }
+
+  let userExists = false;
+
+  if (phoneNumber) {
+    try {
+      const res = await fetch(`https://your-api.com/users?phone=${encodeURIComponent(phoneNumber)}`);
+      const data = await res.json();
+      console.log("🔍 Fetched user data:", data);
+
+      if (data && data.exists) {
+        userExists = true;
+        console.log("✅ User exists in the database.");
+      } else {
+        console.log("🆕 No user found for this phone number.");
+      }
+    } catch (err) {
+      console.error("❌ Error while checking user existence:", err);
+    }
+  }
+
+  return NextResponse.json({
+    dynamic_variables: {
+      last_interaction: new Date().toISOString().split('T')[0],
+    },
+    conversation_config_override: {
+      agent: {
+        prompt: {
+          prompt: userExists ? prompt1 : prompt2,
         },
+        first_message: userExists
+          ? "Welcome back! Ready to continue your home search?"
+          : "Hello! I'm here to help you find your dream home. Let’s get started.",
       },
-    });
+    },
+  });
 }
