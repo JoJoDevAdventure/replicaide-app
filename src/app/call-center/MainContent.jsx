@@ -8,6 +8,7 @@ import { useTheme } from "../context/themeContext"; // Theme context for dark/li
 import CallsHistory from "./CallsHistory";
 import LiveCalls from "./calls";
 import { fetchHistoryCalls, initiateDatabase } from "./service";
+import UsersTable from "./usersTable";
 
 const MainContent = () => {
   const { isDarkMode } = useTheme(); // Get the current theme (dark or light mode)
@@ -86,7 +87,7 @@ const MainContent = () => {
         <Tabs
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          tabs={["Calls History", "Live Calls"]}
+          tabs={["Intake Calls", "Contacts", "Live Calls"]}
         />
 
         {/* Conditional rendering based on the active tab */}
@@ -132,10 +133,9 @@ const MainContent = () => {
           onHidePopup={() => setShowRecommendations(false)}
         />
 
-        {activeTab === 1 && (
-          <LiveCalls
-          />
-        )}
+        {activeTab === 1 && <UsersTable />}
+
+        {activeTab === 2 && <LiveCalls />}
       </div>
     </>
   );
